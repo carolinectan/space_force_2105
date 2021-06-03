@@ -14,4 +14,13 @@ RSpec.describe Spacecraft do
     expect(@daedalus.name).to eq('Daedalus')
     expect(@daedalus.fuel).to eq(400)
   end
+
+  it 'starts with no requirements and can add requirements' do
+    expect(@daedalus.requirements).to eq([])
+
+    @daedalus.add_requirement({astrophysics: 6})
+    @daedalus.add_requirement({quantum_mechanics: 3})
+
+    expect(@daedalus.requirements).to eq([{astrophysics: 6}, {quantum_mechanics: 3}])
+  end
 end
