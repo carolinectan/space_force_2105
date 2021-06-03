@@ -59,6 +59,12 @@ RSpec.describe Flotilla do
   end
 
   it 'can recommend personnel' do
+    @seventh_flotilla.add_ship(@daedalus)
+    @seventh_flotilla.add_personnel(@kathy)
+    @seventh_flotilla.add_personnel(@polly)
+    @seventh_flotilla.add_personnel(@rover)
+    @seventh_flotilla.add_personnel(@sampson)
+
     expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([@kathy, @sampson])
 
     @odyssey = Spacecraft.new({name: 'Odyssey', fuel: 300})
