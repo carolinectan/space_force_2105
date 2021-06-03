@@ -73,4 +73,28 @@ RSpec.describe Flotilla do
 
     expect(@seventh_flotilla.recommend_personnel(@odyssey)).to eq([@polly])
   end
+
+  it 'can return personnel by ship' do
+    @odyssey = Spacecraft.new({name: 'Odyssey', fuel: 300})
+    @odyssey.add_requirement({operations: 6})
+    @odyssey.add_requirement({maintenance: 3})
+
+    @seventh_flotilla.add_personnel(@kathy)
+    @seventh_flotilla.add_personnel(@polly)
+    @seventh_flotilla.add_personnel(@rover)
+    @seventh_flotilla.add_personnel(@sampson)
+
+    expect(@seventh_flotilla.ships).to eq([])
+
+    @seventh_flotilla.add_ship(@daedalus)
+    @seventh_flotilla.add_ship(@odyssey)
+
+    expected = {
+      @daedalus => [@kathy, @sampson],
+      @odyssey => [@polly]
+    }
+
+    expect(@seventh_flotilla.ships).to eq([@daedalus, @odyssey])
+    expect(@seventh_flotilla.personnel_by_ship).to eq(expected)
+  end
 end
