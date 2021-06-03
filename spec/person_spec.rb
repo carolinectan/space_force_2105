@@ -1,7 +1,6 @@
 require 'rspec'
 require './lib/person'
 
-
 RSpec.describe Person do
   before :each do
     @kathy = Person.new('Kathy Chan', 10)
