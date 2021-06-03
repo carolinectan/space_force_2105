@@ -37,4 +37,18 @@ class Flotilla
     end
     people
   end
+
+  def personnel_by_ship
+    personnel_by_ship = Hash.new do |hash, key|
+      hash[key] = []
+    end
+
+    @ships.select do |ship|
+      personnel_by_ship[ship] << recommend_personnel(ship)
+
+    end
+
+    personnel_by_ship
+    # returns nested array for value
+  end
 end
