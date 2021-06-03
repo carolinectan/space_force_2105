@@ -20,10 +20,20 @@ class Flotilla
     ship.requirements.each do |hash|
       keys << hash.keys
     end
-    keys.flatten
+    keys = keys.flatten
+
+    ship_req = []
+    ship.requirements.each do |hash|
+      ship_req << hash.values
+    end
+    ship_req = ship_req.flatten
+
+    num = ship_req.find do |number|
+      (10 - number)
+    end
 
     people = @personnel.find_all do |person|
-      person.specialties == keys.flatten && person.experience > 5
+      person.specialties == keys && person.experience >= num
     end
     people
   end
